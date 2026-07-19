@@ -1,42 +1,21 @@
-- [x] Backend Critical Fixes
-    - [x] BACK-C02: HMAC Webhook Verification in abacatepay.ts (use webhook secret instead of public key)
-    - [x] Update run_webhook_test.js to use webhook secret for signature calculation
-    - [x] BACK-C03: Unique constraint handling in checkout (service.ts)
-    - [x] BACK-C04: Rate limiting on webhook route
-    - [x] BACK-C05: Rate limiting on cancel subscription route
-    - [x] BACK-C06: Rate limiting on change plan route
-- [x] Frontend Critical Fixes
-    - [x] FRONT-C03: UserContext stale closure
-    - [x] FRONT-C04: UserContext memory leak in onAuthStateChange
-    - [x] FRONT-C05 / C06: Upload profile photo to Supabase Storage (settings/page.tsx)
-    - [x] FRONT-C07: Custom modal for cancel subscription instead of window.confirm
-    - [x] FRONT-C08 / C09 / C10: Remove hardcoded fake data in dashboard
-    - [x] FRONT-C11: Sanitization of HTML media kit fields
-- [x] Backend Important & Improvements Fixes
-    - [x] BACK-I03: Webhook idempotency TOCTOU (insert event first)
-    - [x] BACK-I06: getOrCreateBillingCustomer race condition lock
-    - [x] BACK-I01 / I02: Log warnings/errors in webhook processing
-    - [x] BACK-I04: subscription.renewed plan validation
-    - [x] BACK-I07 / M03: Handle subscription.expired and subscription.past_due
-    - [x] BACK-I08 / I09: Paginate admin/billing and admin/users (limit 50)
-    - [x] BACK-I10: Explicit columns in admin/companies select
-    - [x] BACK-I11: Sanitize billing route error messages
-    - [x] BACK-I12 / I14: Add warnings for missing env vars and GOOGLE keys in schema
-    - [x] BACK-M01: Extract select query string in service.ts to constant
-    - [x] BACK-M02: Fix addOneMonth date overflow precision
-    - [x] BACK-M04: Fix isValidPublicUrl behavior for null/empty values
-    - [x] BACK-M08: Omit environment from health check route
-- [x] Frontend Important & Improvements Fixes
-    - [x] FRONT-I01: Update --success color to green (#22c55e)
-    - [x] FRONT-I02: Make outline accessibility compliant (focus-visible)
-    - [x] FRONT-I03: Toast accessibility (role="log")
-    - [x] FRONT-I04: Sidebar accessibility (aria-label/expanded)
-    - [x] FRONT-I05: Display "Em Breve" on unsaved settings fields
-    - [x] FRONT-I06: Color distinction for success/error settings messages
-    - [x] FRONT-I07: Minimum length password validation (8 characters)
-    - [x] FRONT-I08: Mask CPF/CNPJ in sidebar
-    - [x] FRONT-I09: Change site title to "TemTrend"
-    - [x] FRONT-I10: Fix accentuation issues (Configurações, etc.)
-    - [x] FRONT-I11 / I12 / I13: Dynamic calendar month and safe event ID generation
-    - [x] FRONT-I14 / I15 / I16 / I17 / I18: Various context and layout fixes
-- [/] Refactor God Component (Ignored or deferred)
+- [x] Reestruturar navegação e abas em `src/app/dashboard/campaigns/[id]/page.tsx`
+  - [x] Consolidar orçamento e briefing em aba única de Configurações com acordeão/collapse.
+  - [x] Unificar e remover aba Propostas de nível de campanha.
+  - [x] Adicionar barra de salvamento global fixa.
+  - [x] Consolidar métricas para evitar redundância.
+- [x] Ajustar `DashboardSidebar.tsx` para habilitar a aba de propostas do creator.
+- [x] Aprimorar aba de propostas do creator em `src/app/dashboard/crm/page.tsx`.
+- [x] Refatorar drawer em `src/components/campaigns/InfluencerDrawer.tsx`
+  - [x] Aumentar tamanho máximo (max-w-4xl).
+  - [x] Separar em sub-abas Perfil, Proposta & Valores, Entregas / Vídeos, Histórico.
+  - [x] Resolver inconsistência de nome/avatar usando `profiles` como fonte.
+- [x] Ajustar cores de status e empty states em `src/components/campaigns/KanbanColumn.tsx` e `KanbanBoard.tsx`.
+- [x] Corrigir unidade errada (seguidores) e alerta de novo conteúdo em `src/components/campaigns/KanbanCard.tsx`.
+- [x] Unificar aba de Campanhas para Criadores e Empresários (Brands)
+  - [x] Liberar rota `/dashboard/campaigns` para criadores, removendo redirecionamento.
+  - [x] Criar dashboard de propostas/campanhas do creator com filtros de status e cards.
+  - [x] Integrar `DealPanel` no workspace de campanha do criador em `/dashboard/campaigns/[id]`.
+  - [x] Criar aba "Briefing & Requisitos" limpa de duas colunas para criadores e empresários visualizarem.
+  - [x] Redesenhar aba de Configurações das marcas para remover acordeões e usar layout limpo de duas colunas.
+  - [x] Depreciar rota legada `/dashboard/crm` redirecionando para `/dashboard/campaigns`.
+- [x] Testar e validar compilação estática (`npm run build`).
